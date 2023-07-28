@@ -16,7 +16,7 @@ def Read_Data(Number):
     except KeyError as error:
       return 'Erro' 
     else:
-     return str(dados_lidos[Number])
+     return str(dados_lidos[Number.values()])
 
 
   
