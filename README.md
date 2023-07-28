@@ -1,5 +1,5 @@
 # Programa_Agenda
-> Status: Finalizado
+> Status: Em desenvolvimento
 
 ## Progresso
 - [x] Sistema de ligação (com Python e Json)
