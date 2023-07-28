@@ -5,6 +5,7 @@
 - [x] Sistema de ligação (com Python e Json)
 - [x] Interface de ligação
 - [x] Sistema e funcionalidades da agenda
+- [ ] Alterar keys do arquivo Json
 - [ ] Interface do sistema e das funcionalidades da agenda
 - [ ] Exibição de mini agenda na tela de ligação
 
