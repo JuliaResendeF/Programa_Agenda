@@ -12,6 +12,7 @@ with open(Data, 'r') as arquivo_json:
 def Read_Data(Number):
       for chave, valor in dados_lidos.items():
         if valor == Number:
+            print(chave)
             return chave
         
 def Formatar_input(Number):

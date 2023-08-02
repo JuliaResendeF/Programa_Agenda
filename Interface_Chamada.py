@@ -45,7 +45,7 @@ while True:
         Number=sc.Formatar_input(valor_atual)
         valor_atual=sc.Read_Data(Number)
         
-        if valor_atual == 'Erro':
+        if valor_atual == None:
             sg.popup('Numero invalido')
             valor_atual='' 
         else:
