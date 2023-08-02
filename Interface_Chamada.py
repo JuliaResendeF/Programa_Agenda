@@ -20,7 +20,10 @@ layout_Menu =[
     [sg.Button('7',**config_button), sg.Button('8',**config_button), sg.Button('9',**config_button)],
     [sg.Button('0',**config_button)],
     [sg.Button('Desigar',**config_button_F,button_color='red'),
-    sg.Button('Limpar',**config_button_F,),sg.Button('Ligar',**config_button_F,button_color='green')]]
+    sg.Button('Limpar',**config_button_F,),sg.Button('Ligar',**config_button_F,button_color='green')],
+    [sg.Text("",size=(7,5))],[sg.Button('&',**config_button_F),sg.Text("",size=(25,5)),sg.Button('Agenda',**config_button_F)]]
+
+layout_Agenda =[]
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 
@@ -30,7 +33,7 @@ while True:
         break
     
     elif  event == 'Agenda':
-        sg.popup(sc.ledados())
+        sg.popup("em desenvolvimento")
     
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
