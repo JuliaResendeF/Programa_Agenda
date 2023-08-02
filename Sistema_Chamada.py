@@ -8,18 +8,12 @@ nomes=''
 with open(Data, 'r') as arquivo_json:
     dados_lidos = json.load(arquivo_json)
 
+
 def Read_Data(Number):
-    with open(Data, 'r') as arquivo_json:
-         dados_lidos = json.load(arquivo_json)
-    try:
-      print(dados_lidos[Number])
-    except KeyError as error:
-      return 'Erro' 
-    else:
-     return str(dados_lidos[Number.values()])
-
-
-  
+      for chave, valor in dados_lidos.items():
+        if valor == Number:
+            return chave
+        
 def Formatar_input(Number):
     if len(Number) > 4 and Number[4] != '-':
      Number = f"{Number[:4]}-{Number[4:]}"

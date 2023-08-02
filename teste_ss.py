@@ -21,10 +21,22 @@ print(dados_lidos)
 
 #modificar
 
+#digite = input('tel ')
+
+#if digite in dados_lidos.keys():
+#    dados_lidos[digite] = "1111"
+
+#print(dados_lidos)
+def encontrar_chave_por_valor(dicionario, valor_procurado):
+    for chave, valor in dicionario.items():
+        if valor == valor_procurado:
+            return chave
+    return None
+
+
 digite = input('tel ')
 
-if digite in dados_lidos.keys():
-    dados_lidos[digite] = "1111"
+chave_encontrada = encontrar_chave_por_valor(dados_lidos, digite)
 
-print(dados_lidos)
+print(chave_encontrada)
     
