@@ -6,7 +6,7 @@
 - [x] Interface de ligação
 - [x] Sistema e funcionalidades da agenda
 - [x] Alterar keys do arquivo Json
-- [x] Arrumar sistema de ligações Inválidas
+- [X] Arrumar sistema de ligações Inválidas
 - [ ] Interface do sistema e das funcionalidades da agenda
 - [ ] Exibição de mini agenda na tela de ligação
 
