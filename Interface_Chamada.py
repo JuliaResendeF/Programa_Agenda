@@ -68,12 +68,15 @@ while True:
                      window_adc['-NEW_NAME-'].update('')
                      continue
                  else:
-                  sc.Adicionar_Contato(New_Name,New_Tel)
-                  sg.popup("Contato adicionado!")
-                  window_adc['-NEW_TEL-'].update('')
-                  window_adc['-NEW_NAME-'].update('')
-                  continue
-                
+                     if sc.Verificar_duplicidade(New_Tel) == True:
+                      sc.Adicionar_Contato(New_Name,New_Tel)
+                      sg.popup("Contato adicionado!")
+                      window_adc['-NEW_TEL-'].update('')
+                      window_adc['-NEW_NAME-'].update('')
+                      continue
+                     else:
+                         sg.popup("Já existe um contato com esse número")
+                         window_adc['-NEW_TEL-'].update('')
             break
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")

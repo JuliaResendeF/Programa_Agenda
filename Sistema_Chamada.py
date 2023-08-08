@@ -20,6 +20,13 @@ def Formatar_input(Number):
      Number = f"{Number[:4]}-{Number[4:]}"
      return Number
 
+def Verificar_duplicidade(Tel):
+    Tel = Formatar_input(Tel)
+    if Tel in dados_lidos.values():
+     return False
+    else:
+        return True
+
 def Adicionar_Contato(New_Name,New_Tel):
      New_Tel = Formatar_input(New_Tel) 
      dados_lidos.update({New_Name: New_Tel})
