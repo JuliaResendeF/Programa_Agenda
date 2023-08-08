@@ -1,33 +1,43 @@
-import PySimpleGUI as sg
 
-layout1 = [
-    [sg.Text('Janela 1')],
-    [sg.Button('Abrir Janela 2'), sg.Button('Sair')]
-]
+import json
+import os
 
-layout2 = [
-    [sg.Text('Janela 2')],
-    [sg.Button('Fechar Janela 2')]
-]
+Python_Dir = os.path.dirname(os.path.abspath(__file__))
+Data = os.path.join(Python_Dir, 'Data.json')
 
-window1 = sg.Window('Janela 1', layout1)
+with open(Data, 'r') as arquivo_json:
+    dados_lidos = json.load(arquivo_json)
+    
+#Adicionar contato   
+Tel = "1234-1234"
+name = input("nome ")
+dados_lidos[Tel] = name
 
-while True:
-    event1, values1 = window1.read()
+print(dados_lidos)
 
-    if event1 == sg.WINDOW_CLOSED or event1 == 'Sair':
-        window1.close()
-        break
-    elif event1 == 'Abrir Janela 2':
-        window1.hide()
-        window2 = sg.Window('Janela 2', layout2)
+#Deletar
+#Del = input("deletar nome ")
+#del dados_lidos[Del in dados_lidos.values()]
+#print(dados_lidos)
 
-        while True:
-            event2, values2 = window2.read()
+#modificar
 
-            if event2 == sg.WINDOW_CLOSED or event2 == 'Fechar Janela 2':
-                window2.close()
-                window1.un_hide()
-                break
+#digite = input('tel ')
 
-sg.popup_animated(None)
+#if digite in dados_lidos.keys():
+#    dados_lidos[digite] = "1111"
+
+#print(dados_lidos)
+#def encontrar_chave_por_valor(dicionario, valor_procurado):
+#    for chave, valor in dicionario.items():
+ #       if valor == valor_procurado:
+ #           return chave
+ #   return None
+
+
+#digite = input('tel ')
+
+#chave_encontrada = encontrar_chave_por_valor(dados_lidos, digite)
+
+#print(chave_encontrada)
+    
