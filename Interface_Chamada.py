@@ -30,13 +30,13 @@ layout_Agenda =[[sg.Text("",size=(5,5))],[sg.Text("Contatos",font=('Helvetica',2
 
 layout_adc =[[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_NAME-',justification='center')],
-    [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center')],
+    [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center',)],
     [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
-window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True)
 window2.hide()
+window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True,)
 window_adc.hide()
 
 
@@ -62,7 +62,12 @@ while True:
                 elif evento_adc == '-enviar-':
                  New_Name=valores_adc['-NEW_NAME-']
                  New_Tel=valores_adc['-NEW_TEL-']
-                 sc.Adicionar_Contato(New_Name,New_Tel)
+                 if  New_Name == "" or New_Tel == "" or len(New_Tel) < 8:
+                     sg.popup("Insira valores validos")
+                     continue
+                 else:
+                  sc.Adicionar_Contato(New_Name,New_Tel)
+                  continue
             break
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")
