@@ -23,17 +23,51 @@ layout_Menu =[
     sg.Button('Limpar',**config_button_F,),sg.Button('Ligar',**config_button_F,button_color='green')],
     [sg.Text("",size=(7,5))],[sg.Button('&',**config_button_F),sg.Text("",size=(25,5)),sg.Button('Agenda',**config_button_F)]]
 
-layout_Agenda =[]
+layout_Agenda =[[sg.Text("",size=(5,5))],[sg.Text("Contatos",font=('Helvetica',20))],
+    [sg.Text("",size=(5,1))],[sg.Button('Adicionar',**config_button_AG)],
+    [sg.Button('Modificar',**config_button_AG)],
+    [sg.Button('Excluir',**config_button_AG)]]
+
+layout_adc =[[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_NAME-',justification='center')],
+    [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center')],
+    [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
+window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
+window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True)
+window2.hide()
+window_adc.hide()
+
 
 while True:
     event, values = window.read(timeout=100)
     if event == sg.WINDOW_CLOSED:
         break
-    
     elif  event == 'Agenda':
-        sg.popup("em desenvolvimento")
+        window2.un_hide()
+        window.hide()
+        while True:
+         evento2, valores2 = window2.read()
+         if evento2 == 'Adicionar':
+            window_adc.un_hide()
+            window2.hide()
+            while True:
+                evento_adc, valores_adc = window_adc.read()
+                if evento_adc == sg.WINDOW_CLOSED:
+                 break
+                elif evento_adc == '-enviar-':
+                 New_Name=valores_adc['-NEW_NAME-']
+                 New_Tel=valores_adc['-NEW_TEL-']
+                 sc.Adicionar_Contato(New_Name,New_Tel)
+            window_adc.hide()
+         elif evento2 == sg.WINDOW_CLOSED: 
+              break
+         elif evento2 =='Modificar':
+            sg.popup("Em desenvolvimento")
+         elif evento2 =='Excluir':
+            sg.popup("Em desenvolvimento")
+        window2.hide()
     
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
@@ -73,8 +107,9 @@ while True:
         window['-TEMPO-'].update(f'Chamada em andamento: {tempo_formatado}')
 
     window['-DISPLAY-'].update(valor_atual)
-     
+window2.close()    
 window.close()
+
 
         
     
