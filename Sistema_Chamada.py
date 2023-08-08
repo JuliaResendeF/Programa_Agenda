@@ -22,6 +22,7 @@ def Formatar_input(Number):
 
 def Adicionar_Contato(New_Name,New_Tel):
      New_Tel = Formatar_input(New_Tel) 
-     Data[New_Tel] = New_Name
+     dados_lidos[New_Tel] = New_Name
+     
     
 
