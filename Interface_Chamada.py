@@ -64,10 +64,16 @@ while True:
                  New_Tel=valores_adc['-NEW_TEL-']
                  if  New_Name == "" or New_Tel == "" or len(New_Tel) < 8:
                      sg.popup("Insira valores validos")
+                     window_adc['-NEW_TEL-'].update('')
+                     window_adc['-NEW_NAME-'].update('')
                      continue
                  else:
                   sc.Adicionar_Contato(New_Name,New_Tel)
+                  sg.popup("Contato adicionado!")
+                  window_adc['-NEW_TEL-'].update('')
+                  window_adc['-NEW_NAME-'].update('')
                   continue
+                
             break
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")
@@ -75,8 +81,6 @@ while True:
             sg.popup("Em desenvolvimento")
             
         break    
-            
-       
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
                 
