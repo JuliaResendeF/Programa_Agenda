@@ -19,5 +19,9 @@ def Formatar_input(Number):
     if len(Number) > 4 and Number[4] != '-':
      Number = f"{Number[:4]}-{Number[4:]}"
      return Number
+
+def Adicionar_Contato(New_Name,New_Tel):
+     New_Tel = Formatar_input(New_Tel) 
+     Data[New_Tel] = New_Name
     
 
