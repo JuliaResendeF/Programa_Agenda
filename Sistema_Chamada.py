@@ -22,7 +22,10 @@ def Formatar_input(Number):
 
 def Adicionar_Contato(New_Name,New_Tel):
      New_Tel = Formatar_input(New_Tel) 
-     dados_lidos[New_Tel] = New_Name
+     dados_lidos.update({New_Name: New_Tel})
+     with open(Data, 'w') as arquivo:
+        json.dump(dados_lidos, arquivo, indent=4)
+      
      
     
 
