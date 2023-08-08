@@ -44,12 +44,15 @@ while True:
     event, values = window.read(timeout=100)
     if event == sg.WINDOW_CLOSED:
         break
+    
     elif  event == 'Agenda':
         window2.un_hide()
         window.hide()
         while True:
          evento2, valores2 = window2.read()
-         if evento2 == 'Adicionar':
+         if evento2 == sg.WINDOW_CLOSED: 
+             break
+         elif evento2 == 'Adicionar':
             window_adc.un_hide()
             window2.hide()
             while True:
@@ -60,15 +63,15 @@ while True:
                  New_Name=valores_adc['-NEW_NAME-']
                  New_Tel=valores_adc['-NEW_TEL-']
                  sc.Adicionar_Contato(New_Name,New_Tel)
-            window_adc.hide()
-         elif evento2 == sg.WINDOW_CLOSED: 
-              break
+            break
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")
          elif evento2 =='Excluir':
             sg.popup("Em desenvolvimento")
-        window2.hide()
-    
+            
+        break    
+            
+       
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
                 
@@ -107,8 +110,13 @@ while True:
         window['-TEMPO-'].update(f'Chamada em andamento: {tempo_formatado}')
 
     window['-DISPLAY-'].update(valor_atual)
-window2.close()    
+window_adc.close()
+window2.close()
 window.close()
+
+#Para fechar corretamente uma window no pysimplegui deve-se adicionar um if 
+#com um break para para o loop, um break fora do loop e um window.close() fora
+#do ultimo loop do código
 
 
         
