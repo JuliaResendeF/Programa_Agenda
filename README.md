@@ -10,7 +10,7 @@
 - [ ] Interface do sistema e das funcionalidades da agenda
 - [ ] Exibição de mini agenda na tela de ligação
 
-## Requisitos:
+## Requisitos: 
 ```
 Python 3.11.4
 ```
