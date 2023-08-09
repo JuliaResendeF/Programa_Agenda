@@ -14,6 +14,11 @@ Chamada_em_andamento= False
 valor_atual = ''
 Close = 0
 
+def Fechar_Janelas():
+    window_adc.close()
+    window2.close()
+    window.close()
+
 
 layout_Menu =[
     [sg.Input(size=(40, 5),font= ('Helvetica', 40),key='-DISPLAY-',readonly=True,justification='center')],[Mensagem],
@@ -52,9 +57,7 @@ while True:
         while True:
          evento2, valores2 = window2.read()
          if evento2 == sg.WINDOW_CLOSED: 
-             window_adc.close()
-             window2.close()
-             window.close()
+             Fechar_Janelas()
              break
          elif evento2 == 'Adicionar':
             window_adc.un_hide()
@@ -62,9 +65,7 @@ while True:
             while True:
                 evento_adc, valores_adc = window_adc.read()
                 if evento_adc == sg.WINDOW_CLOSED:
-                 window_adc.close()
-                 window2.close()
-                 window.close()
+                 Fechar_Janelas()
                  break
                 elif evento_adc == '-Back-':
                      window2.un_hide()
@@ -142,11 +143,7 @@ while True:
 
         tempo_formatado = f'{horas:02d}:{minutos:02d}:{segundos:02d}'
         window['-TEMPO-'].update(f'Chamada em andamento: {tempo_formatado}')
-
-
-window_adc.close()
-window2.close()
-window.close()
+Fechar_Janelas()
 
 #Para fechar corretamente uma unica window no pysimplegui deve-se adicionar um if 
 #com um break para para o loop, um break fora do loop e um window.close() fora

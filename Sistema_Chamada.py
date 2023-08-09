@@ -1,6 +1,7 @@
 import json
 import os
 
+
 Python_Dir = os.path.dirname(os.path.abspath(__file__))
 Data = os.path.join(Python_Dir, 'Data.json')
 nomes=''
@@ -37,6 +38,9 @@ def Excluir_Contato(Tel):
     del dados_lidos[Tel in dados_lidos.values()]
     with open(Data, 'w') as arquivo:
         json.dump(dados_lidos, arquivo, indent=4)
+        
+
+    
       
      
     
