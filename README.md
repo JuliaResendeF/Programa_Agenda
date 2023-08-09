@@ -7,6 +7,7 @@
 - [x] Sistema e funcionalidades da agenda
 - [x] Alterar keys do arquivo Json
 - [X] Arrumar sistema de ligações Inválidas
+- [ ] Corrigir erros de fechamento indevido de janelas 
 - [ ] Interface do sistema e das funcionalidades da agenda
 - [ ] Exibição de mini agenda na tela de ligação
 
