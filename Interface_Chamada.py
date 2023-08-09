@@ -12,6 +12,8 @@ contador_iniciado = False
 tempo_inicial = 0
 Chamada_em_andamento= False
 valor_atual = ''
+Close = 0
+
 
 layout_Menu =[
     [sg.Input(size=(40, 5),font= ('Helvetica', 40),key='-DISPLAY-',readonly=True,justification='center')],[Mensagem],
@@ -23,12 +25,12 @@ layout_Menu =[
     sg.Button('Limpar',**config_button_F,),sg.Button('Ligar',**config_button_F,button_color='green')],
     [sg.Text("",size=(7,5))],[sg.Button('&',**config_button_F),sg.Text("",size=(25,5)),sg.Button('Agenda',**config_button_F)]]
 
-layout_Agenda =[[sg.Text("",size=(5,5))],[sg.Text("Contatos",font=('Helvetica',20))],
+layout_Agenda =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,5))],[sg.Text("Contatos",font=('Helvetica',20))],
     [sg.Text("",size=(5,1))],[sg.Button('Adicionar',**config_button_AG)],
     [sg.Button('Modificar',**config_button_AG)],
     [sg.Button('Excluir',**config_button_AG)]]
 
-layout_adc =[[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+layout_adc =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_NAME-',justification='center')],
     [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center',)],
     [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
@@ -44,13 +46,15 @@ while True:
     event, values = window.read(timeout=100)
     if event == sg.WINDOW_CLOSED:
         break
-    
     elif  event == 'Agenda':
         window2.un_hide()
         window.hide()
         while True:
          evento2, valores2 = window2.read()
          if evento2 == sg.WINDOW_CLOSED: 
+             window_adc.close()
+             window2.close()
+             window.close()
              break
          elif evento2 == 'Adicionar':
             window_adc.un_hide()
@@ -58,7 +62,14 @@ while True:
             while True:
                 evento_adc, valores_adc = window_adc.read()
                 if evento_adc == sg.WINDOW_CLOSED:
+                 window_adc.close()
+                 window2.close()
+                 window.close()
                  break
+                elif evento_adc == '-Back-':
+                     window2.un_hide()
+                     window_adc.hide()
+                     break
                 elif evento_adc == '-enviar-':
                  New_Name=valores_adc['-NEW_NAME-']
                  New_Tel=valores_adc['-NEW_TEL-']
@@ -76,30 +87,40 @@ while True:
                       continue
                      else:
                          sg.popup("Já existe um contato com esse número")
+            
                          window_adc['-NEW_TEL-'].update('')
-            break
+                 
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")
          elif evento2 =='Excluir':
             sg.popup("Em desenvolvimento")
-            
-        break    
+         elif evento2 == '-Back-':
+                     window.un_hide()
+                     window2.hide()
+                     break
+       
+      
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
+        window['-DISPLAY-'].update(valor_atual)
                 
     elif event.isdigit():
         if len(valor_atual) > 7:
             sg.popup('numero maximo atingido!')
+            window['-DISPLAY-'].update(valor_atual)
         else:
-         valor_atual += event    
+         valor_atual += event 
+         window['-DISPLAY-'].update(valor_atual)   
                
     elif event=='Ligar':
         Number=sc.Formatar_input(valor_atual)
         valor_atual=sc.Read_Data(Number)
+        window['-DISPLAY-'].update(valor_atual)
         
         if valor_atual == None:
             sg.popup('Numero invalido')
             valor_atual='' 
+            window['-DISPLAY-'].update(valor_atual)
         else:
             contador_iniciado = True
             tempo_inicial = time.time()
@@ -111,6 +132,7 @@ while True:
         tempo_inicial = 0
         window['-TEMPO-'].update('')
         Chamada_em_andamento= False
+        window['-DISPLAY-'].update(valor_atual)
             
     if contador_iniciado:
         tempo_decorrido = int(time.time() - tempo_inicial)
@@ -121,14 +143,17 @@ while True:
         tempo_formatado = f'{horas:02d}:{minutos:02d}:{segundos:02d}'
         window['-TEMPO-'].update(f'Chamada em andamento: {tempo_formatado}')
 
-    window['-DISPLAY-'].update(valor_atual)
+
 window_adc.close()
 window2.close()
 window.close()
 
-#Para fechar corretamente uma window no pysimplegui deve-se adicionar um if 
+#Para fechar corretamente uma unica window no pysimplegui deve-se adicionar um if 
 #com um break para para o loop, um break fora do loop e um window.close() fora
 #do ultimo loop do código
+
+#Novo método- atribuir o resultado sg.WINDOW_CLOSED a window.close e em seguida break
+
 
 
         
