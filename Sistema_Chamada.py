@@ -32,6 +32,11 @@ def Adicionar_Contato(New_Name,New_Tel):
      dados_lidos.update({New_Name: New_Tel})
      with open(Data, 'w') as arquivo:
         json.dump(dados_lidos, arquivo, indent=4)
+
+def Excluir_Contato(Tel):
+    del dados_lidos[Tel in dados_lidos.values()]
+    with open(Data, 'w') as arquivo:
+        json.dump(dados_lidos, arquivo, indent=4)
       
      
     
