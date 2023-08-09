@@ -38,6 +38,10 @@ layout_Agenda =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,5))],[sg.Text(
 layout_adc =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_NAME-',justification='center')],
     [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center',)],
+    [sg.Button("Excluir",**config_button_AG,key='-enviar-')]]
+
+layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME-',justification='center')],
     [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
@@ -45,7 +49,8 @@ window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification
 window2.hide()
 window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True,)
 window_adc.hide()
-
+window_exc =sg.Window("Chamada",layout_exc,size=(600,650),element_justification='c',finalize=True,)
+window_exc.hide()
 
 while True:
     event, values = window.read(timeout=100)
@@ -94,7 +99,19 @@ while True:
          elif evento2 =='Modificar':
             sg.popup("Em desenvolvimento")
          elif evento2 =='Excluir':
-            sg.popup("Em desenvolvimento")
+            window_exc.un_hide()
+            window2.hide()
+            while True:
+                evento_exc, valores_exc = window_exc.read()
+                if evento_exc == sg.WINDOW_CLOSED:
+                 Fechar_Janelas()
+                 break 
+                elif evento_exc== '-Back-':
+                     window2.un_hide()
+                     window_exc.hide()
+                     break
+             
+                
          elif evento2 == '-Back-':
                      window.un_hide()
                      window2.hide()
