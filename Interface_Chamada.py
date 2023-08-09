@@ -41,8 +41,8 @@ layout_adc =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Co
     [sg.Button("Excluir",**config_button_AG,key='-enviar-')]]
 
 layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
-    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME-',justification='center')],
-    [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
+    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
+    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
@@ -110,6 +110,9 @@ while True:
                      window2.un_hide()
                      window_exc.hide()
                      break
+                elif evento_exc == '-excluir-':
+                    Contato_Exc=valores_exc['-NAME_EXC-']
+                    sc.Excluir_Contato(Contato_Exc)
              
                 
          elif evento2 == '-Back-':

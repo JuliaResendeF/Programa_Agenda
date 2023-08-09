@@ -9,23 +9,23 @@ with open(Data, 'r') as arquivo_json:
     dados_lidos = json.load(arquivo_json)
     
 #Adicionar contato   
-Tel = "1234-1234"
-name = input("nome ")
-dados_lidos[Tel] = name
+#Tel = "1234-1234"
+#name = input("nome ")
+#dados_lidos[Tel] = name
 
-print(dados_lidos)
+#print(dados_lidos)
 
 #Deletar
-#Del = input("deletar nome ")
-#del dados_lidos[Del in dados_lidos.values()]
-#print(dados_lidos)
+Del = input("deletar nome ")
+del dados_lidos[Del in dados_lidos.keys()]
+print(dados_lidos)
 
 #modificar
 
-digite = input('tel ')
+#digite = input('tel ')
 
-if digite in dados_lidos.keys():
-   dados_lidos[digite] = "1111"
+#if digite in dados_lidos.keys():
+#   dados_lidos[digite] = "1111"
 
 #print(dados_lidos)
 #def encontrar_chave_por_valor(dicionario, valor_procurado):
