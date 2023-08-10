@@ -9,7 +9,6 @@ nomes=''
 with open(Data, 'r') as arquivo_json:
     dados_lidos = json.load(arquivo_json)
 
-
 def Read_Data(Number):
       for chave, valor in dados_lidos.items():
         if valor == Number:
@@ -35,7 +34,8 @@ def Adicionar_Contato(New_Name,New_Tel):
         json.dump(dados_lidos, arquivo, indent=4)
 
 def Excluir_Contato(Tel):
-    del dados_lidos[Tel in dados_lidos.values()]
+    if Tel in dados_lidos:
+     del dados_lidos[Tel]
     with open(Data, 'w') as arquivo:
         json.dump(dados_lidos, arquivo, indent=4)
         

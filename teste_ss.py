@@ -16,9 +16,10 @@ with open(Data, 'r') as arquivo_json:
 #print(dados_lidos)
 
 #Deletar
-Del = input("deletar nome ")
-del dados_lidos[Del in dados_lidos.keys()]
-print(dados_lidos)
+#Del = input("deletar nome ")
+#if Del in dados_lidos:
+#    del dados_lidos[Del]
+#print(dados_lidos)
 
 #modificar
 
