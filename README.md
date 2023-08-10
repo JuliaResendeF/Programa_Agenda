@@ -1,7 +1,7 @@
 # Programa_Agenda
 > Status: Em desenvolvimento
 ## Resumo
-Sistema que simula um software de ligação digital e de gerenciamento de contatos (agenda), o projeto armazena os registros dos contatos em um dicionário em um arquivo Json, eles são utilizados durante o processo de ligação e podem ser manipulados através das funcionalidades Adicionar, Modificar e Excluir (algumas das funcionalidades ainda estão em desenvolvimento ou em fase de testes).
+Sistema que simula um software de ligação digital e de gerenciamento de contatos (agenda), o projeto armazena os registros dos contatos em um dicionário de um arquivo Json, eles são utilizados durante o processo de ligação e podem ser manipulados através das funcionalidades Adicionar, Modificar e Excluir (algumas das funcionalidades ainda estão em desenvolvimento ou em fase de testes).
 
 ## Progresso
 - [x] Sistema de ligação (com Python e Json)
