@@ -16,19 +16,19 @@ with open(Data, 'r') as arquivo_json:
 #print(dados_lidos)
 
 #Deletar
-Del = input("deletar nome ")
-if Del in dados_lidos:
-    del dados_lidos[Del]
-print(dados_lidos)
+#Del = input("deletar nome ")
+#if Del in dados_lidos:
+#    del dados_lidos[Del]
+#print(dados_lidos)
 
 #modificar
 
-#digite = input('tel ')
+digite = input('tel ')
 
-#if digite in dados_lidos.keys():
-#   dados_lidos[digite] = "1111"
+if digite in dados_lidos.values():
+   dados_lidos.update({digite: "1"})
 
-#print(dados_lidos)
+print(dados_lidos)
 #def encontrar_chave_por_valor(dicionario, valor_procurado):
 #    for chave, valor in dicionario.items():
  #       if valor == valor_procurado:
