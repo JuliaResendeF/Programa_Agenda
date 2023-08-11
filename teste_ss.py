@@ -26,7 +26,7 @@ with open(Data, 'r') as arquivo_json:
 digite = input('tel ')
 
 if digite in dados_lidos.values():
-   dados_lidos.update({digite: "1"})
+   dados_lidos["3"] = digite
 
 print(dados_lidos)
 #def encontrar_chave_por_valor(dicionario, valor_procurado):
