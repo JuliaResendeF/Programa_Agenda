@@ -38,6 +38,9 @@ def Excluir_Contato(Tel):
           del dados_lidos[Tel]
           with open(Data, 'w') as arquivo:
             json.dump(dados_lidos, arquivo, indent=4)
+            return True
+    else:
+        return False
         
 
     

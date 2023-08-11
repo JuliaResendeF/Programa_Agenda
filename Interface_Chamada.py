@@ -113,15 +113,18 @@ while True:
                 elif evento_exc == '-excluir-':
                     Contato_Exc=valores_exc['-NAME_EXC-']
                     Excluir = sc.Excluir_Contato(Contato_Exc)
-                    if Excluir == False:
-                        sg.popup("dawn")
+                    if Excluir == True:
+                      sg.popup("Contato excluido !")
+                      window_exc['-NAME_EXC-'].update('')
+                    else:
+                      sg.popup("Contato não encontrado")
+                      window_exc['-NAME_EXC-'].update('')
              
-            
+             
          elif evento2 == '-Back-':
                      window.un_hide()
                      window2.hide()
                      break
-       
       
     elif event == 'Limpar' and Chamada_em_andamento == False:
         valor_atual = '' 
