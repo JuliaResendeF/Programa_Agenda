@@ -41,6 +41,11 @@ def Excluir_Contato(Tel):
             return True
     else:
         return False
+
+def Modifica_Contatos(Name,New_Name,Tel,New_Tel):
+ if Name in dados_lidos.keys():
+   dados_lidos[Name] = New_Tel
+
         
 
     
