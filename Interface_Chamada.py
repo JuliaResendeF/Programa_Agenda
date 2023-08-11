@@ -38,7 +38,7 @@ layout_Agenda =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,5))],[sg.Text(
 layout_adc =[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_NAME-',justification='center')],
     [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NEW_TEL-',justification='center',)],
-    [sg.Button("Excluir",**config_button_AG,key='-enviar-')]]
+    [sg.Button("Enviar",**config_button_AG,key='-enviar-')]]
 
 layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
@@ -85,15 +85,15 @@ while True:
                      window_adc['-NEW_NAME-'].update('')
                      continue
                  else:
-                     if sc.Verificar_duplicidade(New_Tel) == True:
+                     if sc.Verificar_duplicidade(New_Tel,New_Name) == True:
                       sc.Adicionar_Contato(New_Name,New_Tel)
                       sg.popup("Contato adicionado!")
                       window_adc['-NEW_TEL-'].update('')
                       window_adc['-NEW_NAME-'].update('')
                       continue
                      else:
-                         sg.popup("Já existe um contato com esse número")
-            
+                         sg.popup("Já existe um contato com esse número ou nome")
+                         window_adc['-NEW_NAME-'].update('')
                          window_adc['-NEW_TEL-'].update('')
                  
          elif evento2 =='Modificar':
@@ -112,9 +112,11 @@ while True:
                      break
                 elif evento_exc == '-excluir-':
                     Contato_Exc=valores_exc['-NAME_EXC-']
-                    sc.Excluir_Contato(Contato_Exc)
+                    Excluir = sc.Excluir_Contato(Contato_Exc)
+                    if Excluir == False:
+                        sg.popup("dawn")
              
-                
+            
          elif evento2 == '-Back-':
                      window.un_hide()
                      window2.hide()

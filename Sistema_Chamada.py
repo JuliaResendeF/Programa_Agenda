@@ -20,10 +20,10 @@ def Formatar_input(Number):
      Number = f"{Number[:4]}-{Number[4:]}"
      return Number
 
-def Verificar_duplicidade(Tel):
+def Verificar_duplicidade(Tel,Name):
     Tel = Formatar_input(Tel)
-    if Tel in dados_lidos.values():
-     return False
+    if Tel in dados_lidos.values() or Name in dados_lidos.keys():
+      return False
     else:
         return True
 
@@ -35,9 +35,9 @@ def Adicionar_Contato(New_Name,New_Tel):
 
 def Excluir_Contato(Tel):
     if Tel in dados_lidos:
-     del dados_lidos[Tel]
-    with open(Data, 'w') as arquivo:
-        json.dump(dados_lidos, arquivo, indent=4)
+          del dados_lidos[Tel]
+          with open(Data, 'w') as arquivo:
+            json.dump(dados_lidos, arquivo, indent=4)
         
 
     
