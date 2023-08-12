@@ -44,6 +44,10 @@ layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Con
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
     [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
+layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
+    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
 window2.hide()
@@ -51,6 +55,8 @@ window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification=
 window_adc.hide()
 window_exc =sg.Window("Chamada",layout_exc,size=(600,650),element_justification='c',finalize=True,)
 window_exc.hide()
+window_mod =sg.Window("Chamada",layout_mod,size=(600,650),element_justification='c',finalize=True,)
+window_mod.hide()
 
 while True:
     event, values = window.read(timeout=100)
