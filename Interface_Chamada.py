@@ -15,6 +15,9 @@ valor_atual = ''
 Close = 0
 
 def Fechar_Janelas():
+    window_mod_M.close()
+    window_mod.close()
+    window_exc.close()
     window_adc.close()
     window2.close()
     window.close()
@@ -44,19 +47,23 @@ layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Con
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
     [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
-layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
-    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
+layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Digite o nome ou telefone do contato",font=('Helvetica',20),size=(0,2))],
+    [sg.Text("Nome   "),sg.Input(size=(30, 5),font= ('Helvetica', 25),key='-MOD_NAME-',justification='center'),sg.Button("N",key='-modname-')],
+    [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-MOD_TEL-',justification='center',),sg.Button("T",key='-modtel-')],
     [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+
+
 
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
 window2.hide()
-window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True,)
+window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True)
 window_adc.hide()
-window_exc =sg.Window("Chamada",layout_exc,size=(600,650),element_justification='c',finalize=True,)
+window_exc =sg.Window("Chamada",layout_exc,size=(600,650),element_justification='c',finalize=True)
 window_exc.hide()
-window_mod =sg.Window("Chamada",layout_mod,size=(600,650),element_justification='c',finalize=True,)
+window_mod =sg.Window("Chamada",layout_mod,size=(800,650),element_justification='c',finalize=True)
 window_mod.hide()
+
 
 while True:
     event, values = window.read(timeout=100)
@@ -78,18 +85,22 @@ while True:
                 if evento_adc == sg.WINDOW_CLOSED:
                  Fechar_Janelas()
                  break
+
                 elif evento_adc == '-Back-':
                      window2.un_hide()
                      window_adc.hide()
                      break
+                
                 elif evento_adc == '-enviar-':
                  New_Name=valores_adc['-NEW_NAME-']
                  New_Tel=valores_adc['-NEW_TEL-']
+
                  if  New_Name == "" or New_Tel == "" or len(New_Tel) < 8:
                      sg.popup("Insira valores validos")
                      window_adc['-NEW_TEL-'].update('')
                      window_adc['-NEW_NAME-'].update('')
                      continue
+                 
                  else:
                      if sc.Verificar_duplicidade(New_Tel,New_Name) == True:
                       sc.Adicionar_Contato(New_Name,New_Tel)
@@ -97,31 +108,67 @@ while True:
                       window_adc['-NEW_TEL-'].update('')
                       window_adc['-NEW_NAME-'].update('')
                       continue
+                     
                      else:
                          sg.popup("Já existe um contato com esse número ou nome")
                          window_adc['-NEW_NAME-'].update('')
                          window_adc['-NEW_TEL-'].update('')
                  
          elif evento2 =='Modificar':
-            sg.popup("Em desenvolvimento")
+            window_mod.un_hide()
+            window2.hide()
+            while True:
+                evento_mod, valores_mod = window_mod.read()
+
+                if evento_mod == sg.WINDOW_CLOSED:
+                 Fechar_Janelas()
+                 break 
+
+                elif evento_mod== '-Back-':
+                     window2.un_hide()
+                     window_mod.hide()
+                     break
+                
+                elif evento_mod== '-modname-':
+
+                    layout_mod_M=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+                    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
+                    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+
+                    window_mod_M = sg.Window("Chamada",layout_mod_M,size=(200,200),element_justification='c',finalize=True, modal=True)
+                    window_mod_M.un_hide()
+                    while True: 
+                     evento_mod_M, valores_mod_M = window_mod_M.read()
+                     print(evento_mod_M)
+                     print(evento_mod)
+
+                     if evento_mod_M == sg.WINDOW_CLOSED:
+                      window_mod_M.close()
+                     break
+                
          elif evento2 =='Excluir':
             window_exc.un_hide()
             window2.hide()
+
             while True:
                 evento_exc, valores_exc = window_exc.read()
                 if evento_exc == sg.WINDOW_CLOSED:
                  Fechar_Janelas()
                  break 
+
                 elif evento_exc== '-Back-':
                      window2.un_hide()
                      window_exc.hide()
                      break
+                
                 elif evento_exc == '-excluir-':
                     Contato_Exc=valores_exc['-NAME_EXC-']
                     Excluir = sc.Excluir_Contato(Contato_Exc)
+
                     if Excluir == True:
                       sg.popup("Contato excluido !")
                       window_exc['-NAME_EXC-'].update('')
+
                     else:
                       sg.popup("Contato não encontrado")
                       window_exc['-NAME_EXC-'].update('')
