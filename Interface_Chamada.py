@@ -47,10 +47,10 @@ layout_exc=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Con
     [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
     [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
-layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Digite o nome ou telefone do contato",font=('Helvetica',20),size=(0,2))],
-    [sg.Text("Nome   "),sg.Input(size=(30, 5),font= ('Helvetica', 25),key='-MOD_NAME-',justification='center'),sg.Button("N",key='-modname-')],
-    [sg.Text("Numero"),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-MOD_TEL-',justification='center',),sg.Button("T",key='-modtel-')],
-    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Digite o nome ou telefone do contato \n que deseja modificar",font=('Helvetica',20),size=(0,2),justification='center')],[sg.Text("",size=(2,2))],
+    [sg.Text("Nome   "),sg.Input(size=(30, 5),font= ('Helvetica', 25),key='-MOD_NAME-',justification='center'),sg.Button("Pesquisar",key='-modname-')],
+    [sg.Text("OU")],
+    [sg.Text("Numero"),sg.Input(size=(30, 5),font= ('Helvetica', 25),key='-MOD_TEL-',justification='center',),sg.Button("Pesquisar",key='-modtel-')]]
 
 
 
@@ -129,22 +129,23 @@ while True:
                      window_mod.hide()
                      break
                 
-                elif evento_mod== '-modname-':
+                elif evento_mod== '-modname-' or evento_mod =='-modtel-':
+                    sg.popup("Em desenvolvimento")
 
-                    layout_mod_M=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
-                    [sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
-                    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+                    #layout_mod_M=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
+                    #[sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
+                    #[sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
-                    window_mod_M = sg.Window("Chamada",layout_mod_M,size=(200,200),element_justification='c',finalize=True, modal=True)
-                    window_mod_M.un_hide()
-                    while True: 
-                     evento_mod_M, valores_mod_M = window_mod_M.read()
-                     print(evento_mod_M)
-                     print(evento_mod)
+                   # window_mod_M = sg.Window("Chamada",layout_mod_M,size=(200,200),element_justification='c',finalize=True, modal=True)
+                   # window_mod_M.un_hide()
+                   # while True: 
+                   #  evento_mod_M, valores_mod_M = window_mod_M.read()
+                #
+               #      if evento_mod_M == sg.WINDOW_CLOSED:
+               #       window_mod_M.close()
+               #      break
 
-                     if evento_mod_M == sg.WINDOW_CLOSED:
-                      window_mod_M.close()
-                     break
+                    
                 
          elif evento2 =='Excluir':
             window_exc.un_hide()
