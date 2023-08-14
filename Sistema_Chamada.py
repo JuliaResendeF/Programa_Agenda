@@ -1,5 +1,6 @@
 import json
 import os
+import Interface_Chamada as sd
 
 
 Python_Dir = os.path.dirname(os.path.abspath(__file__))
@@ -45,6 +46,17 @@ def Excluir_Contato(Tel):
 def Modifica_Contatos(Name,New_Name,Tel,New_Tel):
  if Name in dados_lidos.keys():
    dados_lidos[Name] = New_Tel
+
+def Localizar_Contatos(Pesquisa):
+    if sd.Search == True:
+     for chave, valor in dados_lidos.items():
+        if valor == Pesquisa:
+            return chave
+    else:
+      ''
+      
+        
+   
 
         
 

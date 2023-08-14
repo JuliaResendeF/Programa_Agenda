@@ -23,12 +23,12 @@ with open(Data, 'r') as arquivo_json:
 
 #modificar
 
-digite = input('tel ')
+#digite = input('tel ')
 
-if digite in dados_lidos.values():
-   dados_lidos["3"] = digite
+#if digite in dados_lidos.values():
+#   dados_lidos["3"] = digite
 
-print(dados_lidos)
+#print(dados_lidos)
 #def encontrar_chave_por_valor(dicionario, valor_procurado):
 #    for chave, valor in dicionario.items():
  #       if valor == valor_procurado:
@@ -41,4 +41,15 @@ print(dados_lidos)
 #chave_encontrada = encontrar_chave_por_valor(dados_lidos, digite)
 
 #print(chave_encontrada)
+
+#modificar 2
+Name = "1234-5678"
+def fifi (Name):
+ for chave, valor in dados_lidos.items():
+        if valor == Name:
+            return chave
+
+print(fifi(Name))
+        
+
     

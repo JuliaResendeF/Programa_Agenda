@@ -54,10 +54,11 @@ layout_mod=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Dig
 
 
 
+
 window = sg.Window("Chamada",layout_Menu,size=(600,650),element_justification='c')
 window2 = sg.Window("Chamada",layout_Agenda,size=(600,650),element_justification='c',finalize=True)
 window2.hide()
-window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True)
+window_adc =sg.Window("Chamada",layout_adc,size=(600,650),element_justification='c',finalize=True,)
 window_adc.hide()
 window_exc =sg.Window("Chamada",layout_exc,size=(600,650),element_justification='c',finalize=True)
 window_exc.hide()
@@ -130,23 +131,25 @@ while True:
                      break
                 
                 elif evento_mod== '-modname-' or evento_mod =='-modtel-':
-                    sg.popup("Em desenvolvimento")
+                       
+                       Search = True
+                       Name_mod = valores_mod['-MOD_NAME-']
+                       Tel_mod = sc.Localizar_Contatos(valores_mod['-MOD_NAME-'])
 
-                    #layout_mod_M=[[sg.Button("<",key='-Back-')],[sg.Text("",size=(5,6))],[sg.Text("Contatos",font=('Helvetica',20),size=(0,2))],
-                    #[sg.Text("Nome   "),sg.Input(size=(40, 5),font= ('Helvetica', 25),key='-NAME_EXC-',justification='center')],
-                    #[sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
-                   # window_mod_M = sg.Window("Chamada",layout_mod_M,size=(200,200),element_justification='c',finalize=True, modal=True)
-                   # window_mod_M.un_hide()
-                   # while True: 
-                   #  evento_mod_M, valores_mod_M = window_mod_M.read()
-                #
-               #      if evento_mod_M == sg.WINDOW_CLOSED:
-               #       window_mod_M.close()
-               #      break
+                    layout_mod_M=[[sg.Text("",size=(5,6))],[sg.Text("Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod)],[sg.Text(Tel_mod)],
+                    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
 
-                    
+                    window_mod_M = sg.Window("Chamada",layout_mod_M,size=(500,500),element_justification='c',finalize=True, modal=True)
+                    window_mod_M.un_hide()
+                    while True: 
+                     evento_mod_M, valores_mod_M = window_mod_M.read()
                 
+                     if evento_mod_M == sg.WINDOW_CLOSED:
+                      window_mod_M.close()
+                      break
+
+                                
          elif evento2 =='Excluir':
             window_exc.un_hide()
             window2.hide()
