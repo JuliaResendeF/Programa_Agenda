@@ -57,6 +57,15 @@ def Localizar_Contatos_T(Pesquisa):
      for chave, valor in dados_lidos.items():
         if valor == Pesquisa:
             return chave
+
+def New_mod_name (name,Tel_mod,Name_mod):
+    if Tel_mod in dados_lidos.values():
+       Tel_mod = dados_lidos[Name_mod]
+       dados_lidos[name] = Tel_mod
+    del dados_lidos[Name_mod]
+    with open(Data, 'w') as arquivo:
+        json.dump(dados_lidos, arquivo, indent=4)
+
       
         
    
