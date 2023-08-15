@@ -135,15 +135,17 @@ while True:
                     if evento_mod== '-modname-':
                      Name_mod = valores_mod['-MOD_NAME-']
                      Tel_mod = sc.Localizar_Contatos_N(Name_mod)
-                     
+                    
                     elif evento_mod== '-modtel-':
                      Tel_mod = valores_mod['-MOD_TEL-']
                      Name_mod = sc.Localizar_Contatos_T(Tel_mod)
+                     Tel_mod=sc.Formatar_input(Tel_mod)
 
-                    layout_mod_M=[[sg.Text("",size=(5,6))],[sg.Text("Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod)],[sg.Text(Tel_mod)],
-                    [sg.Button("Excluir",**config_button_AG,key='-excluir-')]]
+                    layout_mod_M=[[sg.Text("Modificar Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod)],[sg.Text(Tel_mod)],[sg.Text('')],
+                    [sg.Text("Novo Nome   "),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-MOD_NAME-',justification='center'),sg.Button("Pesquisar",key='-modname-')],[sg.Text('')],
+                    [sg.Text("Novo Numero"),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-MOD_TEL-',justification='center'),sg.Button("Pesquisar",key='-modtel-')]]
 
-                    window_mod_M = sg.Window("Chamada",layout_mod_M,size=(500,500),element_justification='c',finalize=True, modal=True)
+                    window_mod_M = sg.Window("Chamada",layout_mod_M,size=(650,400),element_justification='c',finalize=True, modal=True)
                     window_mod_M.un_hide()
                     while True: 
                      evento_mod_M, valores_mod_M = window_mod_M.read()

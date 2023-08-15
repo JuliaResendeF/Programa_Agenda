@@ -53,6 +53,7 @@ def Localizar_Contatos_N(Pesquisa):
             return valor
           
 def Localizar_Contatos_T(Pesquisa):
+     Pesquisa = Formatar_input(Pesquisa)
      for chave, valor in dados_lidos.items():
         if valor == Pesquisa:
             return chave
