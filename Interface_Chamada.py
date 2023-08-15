@@ -141,7 +141,7 @@ while True:
                      Name_mod = sc.Localizar_Contatos_T(Tel_mod)
                      Tel_mod=sc.Formatar_input(Tel_mod)
 
-                    layout_mod_M=[[sg.Text("Modificar Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod)],[sg.Text(Tel_mod)],[sg.Text('')],
+                    layout_mod_M=[[sg.Text("Modificar Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod,key='-namemodi-')],[sg.Text(Tel_mod,key='-telmodi-')],[sg.Text('')],
                     [sg.Text("Novo Nome   "),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-New_MOD_NAME-',justification='center'),sg.Button("Enviar",key='-new_modname-')],[sg.Text('')],
                     [sg.Text("Novo Numero"),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-New_MOD_TEL-',justification='center'),sg.Button("Enviar",key='-new_modtel-')]]
 
@@ -157,6 +157,8 @@ while True:
                      elif  evento_mod_M == '-new_modname-':
                          New_mod_Name = valores_mod_M['-New_MOD_NAME-']
                          sc.New_mod_name(New_mod_Name,Tel_mod,Name_mod)
+                         Name_mod = New_mod_Name
+                         window_mod_M['-namemodi-'].update(Name_mod)
                          continue
 
                                 
