@@ -65,6 +65,12 @@ def New_mod_name (name,Tel_mod,Name_mod):
     del dados_lidos[Name_mod]
     with open(Data, 'w') as arquivo:
         json.dump(dados_lidos, arquivo, indent=4)
+        
+def New_mod_tel (Tel_mod,Name_mod):
+    if Name_mod in dados_lidos.keys():
+       dados_lidos[Name_mod] = Tel_mod
+    with open(Data, 'w') as arquivo:
+        json.dump(dados_lidos, arquivo, indent=4)
 
       
         

@@ -160,6 +160,11 @@ while True:
                          Name_mod = New_mod_Name
                          window_mod_M['-namemodi-'].update(Name_mod)
                          continue
+                     elif  evento_mod_M == '-new_modtel-':
+                         New_mod_Tel = valores_mod_M['-New_MOD_TEL-']
+                         sc.New_mod_tel(New_mod_Tel, Name_mod)
+                         window_mod_M['-telmodi-'].update(New_mod_Tel)
+                         continue
 
                                 
          elif evento2 =='Excluir':
