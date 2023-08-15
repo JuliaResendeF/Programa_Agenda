@@ -131,10 +131,12 @@ while True:
                      break
                 
                 elif evento_mod== '-modname-' or evento_mod =='-modtel-':
-                       
-                       Search = True
-                       Name_mod = valores_mod['-MOD_NAME-']
-                       Tel_mod = sc.Localizar_Contatos(valores_mod['-MOD_NAME-'])
+                    if evento_mod== '-modname-':
+                     Name_mod = valores_mod['-MOD_NAME-']
+                     Tel_mod = sc.Localizar_Contatos(Name_mod)
+                    elif evento_mod== '-modtel-':
+                     Tel_mod = valores_mod['-MOD_TEL-']
+                     Name_mod = sc.Localizar_Contatos(Tel_mod)
 
 
                     layout_mod_M=[[sg.Text("",size=(5,6))],[sg.Text("Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod)],[sg.Text(Tel_mod)],
