@@ -43,10 +43,6 @@ def Excluir_Contato(Tel):
     else:
         return False
 
-def Modifica_Contatos(Name,New_Name,Tel,New_Tel):
- if Name in dados_lidos.keys():
-   dados_lidos[Name] = New_Tel
-
 def Localizar_Contatos_N(Pesquisa):
      for chave, valor in dados_lidos.items():
         if chave == Pesquisa:

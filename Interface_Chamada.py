@@ -15,7 +15,6 @@ valor_atual = ''
 Close = 0
 
 def Fechar_Janelas():
-    window_mod_M.close()
     window_mod.close()
     window_exc.close()
     window_adc.close()
