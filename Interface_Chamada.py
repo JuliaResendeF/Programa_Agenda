@@ -143,14 +143,15 @@ while True:
 
                     layout_mod_M=[[sg.Text("Modificar Contato",font=('Helvetica',20),size=(0,2))],[sg.Text(Name_mod,key='-namemodi-')],[sg.Text(Tel_mod,key='-telmodi-')],[sg.Text('')],
                     [sg.Text("Novo Nome   "),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-New_MOD_NAME-',justification='center'),sg.Button("Enviar",key='-new_modname-')],[sg.Text('')],
-                    [sg.Text("Novo Numero"),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-New_MOD_TEL-',justification='center'),sg.Button("Enviar",key='-new_modtel-')]]
+                    [sg.Text("Novo Numero"),sg.Input(size=(20, 5),font= ('Helvetica', 25),key='-New_MOD_TEL-',justification='center'),sg.Button("Enviar",key='-new_modtel-')],
+                     [sg.Text("")],[sg.Button("Finalizar",**config_button_AG,key='-finalizar_m-')]]
 
                     window_mod_M = sg.Window("Chamada",layout_mod_M,size=(650,400),element_justification='c',finalize=True, modal=True)
                     window_mod_M.un_hide()
                     while True: 
                      evento_mod_M, valores_mod_M = window_mod_M.read()
                 
-                     if evento_mod_M == sg.WINDOW_CLOSED:
+                     if evento_mod_M == sg.WINDOW_CLOSED or evento_mod_M == '-finalizar_m-':
                       window_mod_M.close()
                       break
                      
@@ -160,6 +161,7 @@ while True:
                          Name_mod = New_mod_Name
                          window_mod_M['-namemodi-'].update(Name_mod)
                          continue
+                     
                      elif  evento_mod_M == '-new_modtel-':
                          New_mod_Tel = valores_mod_M['-New_MOD_TEL-']
                          sc.New_mod_tel(New_mod_Tel, Name_mod)
