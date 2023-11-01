@@ -78,8 +78,10 @@ while True:
              Fechar_Janelas()
              break
          elif evento2 == 'Adicionar':
+             
             window_adc.un_hide()
             window2.hide()
+            
             while True:
                 evento_adc, valores_adc = window_adc.read()
                 if evento_adc == sg.WINDOW_CLOSED:
@@ -155,11 +157,25 @@ while True:
                       break
                      
                      elif  evento_mod_M == '-new_modname-':
-                         New_mod_Name = valores_mod_M['-New_MOD_NAME-']
-                         sc.New_mod_name(New_mod_Name,Tel_mod,Name_mod)
-                         Name_mod = New_mod_Name
-                         window_mod_M['-namemodi-'].update(Name_mod)
+                       if  New_mod_Name == "" :
+                         sg.popup("Insira valores validos")
+                         window_mod_M['-New_MOD_NAME-'].update('')
                          continue
+                 
+                       else:
+                         if sc.Verificar_duplicidade(New_mod_Name,00000000) == True:
+                           New_mod_Name = valores_mod_M['-New_MOD_NAME-']
+                           sc.New_mod_name(New_mod_Name,Tel_mod,Name_mod)
+                           Name_mod = New_mod_Name
+                           window_mod_M['-namemodi-'].update(Name_mod)
+
+                           sg.popup("Contato modificado!")
+                           continue
+                     
+                         else:
+                           sg.popup("Já existe um contato com esse número ou nome")
+                           continue
+                         
                      
                      elif  evento_mod_M == '-new_modtel-':
                          New_mod_Tel = valores_mod_M['-New_MOD_TEL-']
